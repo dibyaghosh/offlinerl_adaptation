@@ -206,7 +206,50 @@
           <img  width="100%" src="epistemic_pomdp.png"></img>
         </div>
       </div> -->
-        <!-- <center id="demoVideo"><h1>Video</h1></center>
+
+       <div class="row">
+        <div class="col-12 col-md-6">
+          <center><h2>Locked Doors</h2></center>
+          In this task, an agent is placed in a room with four doors, but only one of them is unlocked. 
+          The agent gets in its observation an image whose label corresponds to the unlocked door -- the agent's task requires both proper perception (classifying the image) and control
+          (opening the appropriate door).
+          
+          On this task, any standard offline RL method learns a state-based policy, which means that it only ever tries a single door for any given image. But this is sub-optimal!
+          Our agent learns an adaptive strategy -- trying one door, and if it fails, then updating it's belief vector and trying another one. This leads to far improved performance over
+          conservative offline methods.
+          </div>
+        <div class="col-12 col-md-6">
+          <img  width="100%" src="locked_doors_combined.png"></img>
+          <img  width="100%" src="closed-door-1.png"></img>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <center><h2>Procgen Mazes</h2></center>
+          
+          Procgen Mazes is a very challenging maze solving task, requiring perception from  64x64 images and generalization across different maze layouts and textures.
+          The offline problem requires an agent to learn from transitions collected in 1000 maze layouts and learn a maze-solving policy that generalizes to new mazes.
+
+          Standard offline RL methods learns a static behavior, which means that it only ever tries a single path to the goal, leading to catastrophic failure whenever it makes a single mistake. 
+          Our agent learns to try one path, and if it fails, then updating it's belief vector and trying another one. This leads to the agent solving mazes 10% more frequently than the conservative solution.
+          </div>
+        <div class="col-12 col-md-6">
+          <img  width="40%" src="maze_2_by_2-1.png"></img>
+          <img  width="50%" src="procgen_test.png"></img>
+        </div>
+      </div>
+      <hr>
+
+      <div class="row">
+        <div class="col-12 col-md-12">
+          <center><h2>D4RL</h2></center>
+          <img  width="100%" src="d4rl.png"></img>
+          </div>
+      </div>
+
+
+      <!-- <center id="demoVideo"><h1>Video</h1></center>
 
                 <video width="100%" controls>
                     <source src="dnc_video.mp4" type="video/mp4">
