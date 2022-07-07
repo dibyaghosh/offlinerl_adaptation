@@ -143,9 +143,9 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://dibyaghosh.com/images/research/dnc.png">
-    <title>Divide-and-Conquer Reinforcement Learning</title>
-    <meta property='og:title' content='Divide-and-Conquer Reinforcement Learning' />
-    <meta property="og:description" content="Ghosh, Singh, Rajeswaran, Kumar, Levine. Divide-and-Conquer Reinforcement Learning. In ICLR, 2018." />
+    <title>Offline RL Policies Should be Trained to be Adaptive</title>
+    <meta property='og:title' content='Offline RL Policies Should be Trained to be Adaptive' />
+    <meta property="og:description" content="Ghosh, Ajay, Agrawal, Levine. Offline RL Policies Should be Trained to be Adaptive. In ICML 2022." />
     <meta property='og:url' content='https://dibyaghosh.com/dnc' />
     <meta property='og:video' content='dnc_video.mp4' />
     <meta property='og:image' content='https://dibyaghosh.com/images/research/dnc.png' />
@@ -155,65 +155,88 @@
     <div class="bootstrap-wrapper">
       <div class="container">
         <header>
-        <h1><center><span style="font-size:1.5em;font-weight:bold;">Divide-and-Conquer Reinforcement Learning </span></center></h1>
+        <h1><center><span style="font-size:1.5em;font-weight:bold;">Offline RL Policies Should be Trained to be Adaptive </span></center></h1>
         </header>
         <div class="row">
             <div class="col author"><a href="https://dibyaghosh.com" target="_blank">Dibya Ghosh<sup>1</sup></a></div>
-            <div class="col author"><a href="http://people.eecs.berkeley.edu/~avisingh/" target="_blank">Avi Singh<sup>1</sup></a></div>
-            <div class="col author"><a href="http://aravindr93.github.io" target="_blank">Aravind Rajeswaran<sup>2</sup></a></div>
-            <div class="col author"><a href="https://vikashplus.github.io/" target="_blank">Vikash Kumar<sup>2</sup></a></div>
+            <div class="col author"><a href="https://anuragajay.github.io/" target="_blank">Anurag Ajay<sup>2</sup></a></div>
+            <div class="col author"><a href="https://people.csail.mit.edu/pulkitag/" target="_blank">Pulkit Agrawal<sup>2</sup></a></div>
             <div class="col author"><a href="https://people.eecs.berkeley.edu/~svlevine/" target="_blank">Sergey Levine<sup>1</sup></a></div>
 
         </div>
         <div class="row">
-            <div class="col author"><sup>1</sup>University of California, Berkeley</div>
-            <div class="col author"><sup>2</sup>University of Washington</div>
+            <div class="col author"><sup>1</sup>UC Berkeley</div>
+            <div class="col author"><sup>2</sup>MIT</div>
         </div>
 
-            <div class="author"><center><a href="https://iclr.cc/Conferences/2018" target="_blank">ICLR 2018</a></center></div>
-            <div class="author"><a href="https://arxiv.org/abs/1711.09874">[Paper]</a> <a href="https://github.com/dibyaghosh/dnc">[Code]</a></div>
+            <div class="author"><center><a href="https://iclr.cc/Conferences/2018" target="_blank">ICML 2022</a> <span style="color:red;"> (Long Talk)</span></center></div>
+            <div class="author"><a href="https://arxiv.org/abs/2207.02200">[Paper]</a> <a href="">[Video coming soon]</a></div>
+            <hr>
+            <div class="row">
+              <div class="col-12 col-md-4">
+                <img width="100%" src="teaser_ape.002.png"></img>
 
-        <center id="demoVideo"><h1>Video</h1></center>
+              </div>
+              <div class="col-12 col-md-3">
+                <center>
+                <img  width="75%" src="maze_2_by_2-1.png">
+              </center>
+              </div>
+              <div class="col-12 col-md-5">
+                <img  width="100%" src="closed-door-1.png"></img>
+              </div>
+
+            </div>
+            <center id="sourceCode"><h1>Summary</h1></center>
+            <p>
+              Our paper studies the theoretical and practical utility of learning adaptive policies (policies that change through an episode) in offline reinforcement learning.
+              We use Bayesian tools to prove why adaptability is necessary and discuss a policy must adapt to optimally maximize offline RL performance.
+              As a first step towards learning optimal adaptive strategies, we propose an ensemble-based offline RL algorithm for learning adaptive policies and demonstrate
+              their favorable properties in challenging image-based offline RL problems.
+          </p>
+    
+          <hr>
+
+      <!-- <div class="row">
+        <div class="col-12 col-md-6">
+          <center><h2>Why is Adaptation Necessary</h2></center>
+          
+          </div>
+        <div class="col-12 col-md-6">
+          <img  width="100%" src="epistemic_pomdp.png"></img>
+        </div>
+      </div> -->
+        <!-- <center id="demoVideo"><h1>Video</h1></center>
 
                 <video width="100%" controls>
                     <source src="dnc_video.mp4" type="video/mp4">
                     <source src="dnc_video.ogv" type="video/ogg">
                     Your browser does not support the video tag.
-                  </video>
+                  </video> -->
         <br />
-<p>
-        Standard model-free deep reinforcement learning (RL) algorithms sample a new initial state for each trial,
-         allowing them to optimize policies that can perform well even in highly stochastic environments. 
-         However, problems that exhibit considerable initial state variation typically produce high-variance gradient estimates for model-free RL, 
-         making direct policy or value function optimization challenging. In this paper, we develop a novel algorithm that instead partitions the initial state space into
-          "slices", and optimizes an ensemble of policies, each on a different slice. The ensemble is gradually unified into a single policy that can succeed on the whole state space. 
-          This approach, which we term <i>divide-and-conquer RL</i>, is able to solve complex tasks where conventional deep RL methods are ineffective. 
-          Our results show that divide-and-conquer RL greatly outperforms conventional policy gradient methods on challenging grasping, manipulation, 
-          and locomotion tasks, and exceeds the performance of a variety of prior methods.
+        <hr>
+        <center id="sourceCode"><h1>Full Abstract</h1></center>
+
+        <p>
+  Offline RL algorithms must account for the fact that the dataset they are provided may leave many facets of the environment unknown. The most common way to approach this challenge is to employ pessimistic or conservative methods, which avoid behaviors that are too dissimilar from those in the training dataset. However, relying exclusively on conservatism has drawbacks: performance is sensitive to the exact degree of conservatism, and conservative objectives can recover highly suboptimal policies. In this work, we propose that offline RL methods should instead be adaptive in the presence of uncertainty. We show that acting optimally in offline RL in a Bayesian sense involves solving an implicit POMDP. As a result, optimal policies for offline RL must be adaptive, depending not just on the current state but rather all the transitions seen so far during evaluation.We present a model-free algorithm for approximating this optimal adaptive policy, and demonstrate the efficacy of learning such adaptive policies in offline RL benchmarks.
         </p>
       <hr>
 
-            <center><a href="teaser.png"><img id="teaser" src="teaser.png"></img></a><br></center>
-        <center id="sourceCode"><h1>High Level Idea</h1></center>
-        <p>
-        For problems with high initial state variability, we partition the initial state space of the task into contexts using clustering algorithms. We train an ensemble of <i> local </i> policies, each specialized to a particular context. The objective for each policy is to maximize expected reward and minimize the KL divergence from each of the other policies in the ensemble. On a slower timescale, the ensemble is distilled together into a <i> global </i> policy, which can operate on
-        the original task. 
-      </p>
-
+           
       <hr>
 
       <center><h1>Paper</h1></center>
       <div class="row">
         <div class="col-12 col-md-6">
           <p>
-            <div><a href="https://arxiv.org/pdf/1711.09874.pdf"><img style="max-height:200px; max-width: 100%;" src="preview.jpg"/></a></div>
-            <div class="author"><a href="https://arxiv.org/pdf/1711.09874.pdf">[Paper PDF]</a>&nbsp;<a href="https://arxiv.org/abs/1711.09874">[arXiv]</a></div>
+            <div><a href="https://arxiv.org/pdf/2207.02200.pdf"><img style="max-height:200px; max-width: 100%;" src="preview.jpg"/></a></div>
+            <div class="author"><a href="https://arxiv.org/pdf/2207.02200.pdf">[Paper PDF]</a>&nbsp;<a href="https://arxiv.org/abs/2207.02200">[arXiv]</a></div>
           </p>
           </div>
         <div class="col-12 col-md-6">
             <p style="text-align:left;">
               <b><span style="font-size:2em">Citation</span></b><br/><span style="font-size:1em;">&nbsp;<br/></span>
-              <span style="font-size:1.3em">Dibya Ghosh, Avi Singh, Aravind Rajeswaran, Vikash Kumar, Sergey Levine <br/> <b>Divide-and-Conquer Reinforcement Learning</b> In <i>ICLR 2018</i>.</span></p>
+              <span style="font-size:1.3em">Dibya Ghosh, Anurag Ajay, Pulkit Agrawal, Sergey Levine <br/> <b>Offline RL Policies Should be Trained to be Adaptive</b> In <i>ICML 2022</i>.</span></p>
 
         </div>
       </div>
